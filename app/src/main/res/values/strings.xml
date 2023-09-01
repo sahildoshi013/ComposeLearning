@@ -2,4 +2,7 @@
     <string name="app_name">Compose Learning</string>
     <string name="show_less">Show less</string>
     <string name="show_more">Show more</string>
+    <string name="title_activity_basic_layout">BasicLayoutActivity</string>
+    <string name="placeholder_search">Search</string>
+    <string name="ab1_inversions">Inversions</string>
 </resources>
