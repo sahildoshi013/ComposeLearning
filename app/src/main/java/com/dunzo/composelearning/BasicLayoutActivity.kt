@@ -33,6 +33,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
@@ -52,29 +53,8 @@ class BasicLayoutActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            ComposeLearningTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
-                    Greeting2("Android")
-                }
-            }
+            MyAppPortrait()
         }
-    }
-}
-
-@Composable
-fun Greeting2(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview2() {
-    ComposeLearningTheme {
-        Greeting2("Android")
     }
 }
 
@@ -400,5 +380,16 @@ private fun BottomNavigation(modifier: Modifier = Modifier) {
 fun NavigationPreview() {
     ComposeLearningTheme {
         BottomNavigation()
+    }
+}
+
+@Composable
+fun MyAppPortrait() {
+    ComposeLearningTheme {
+        Scaffold(
+            bottomBar = { BottomNavigation() }
+        ) { padding ->
+            HomeScreen(Modifier.padding(padding))
+        }
     }
 }
