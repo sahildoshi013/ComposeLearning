@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -21,7 +22,9 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyHorizontalGrid
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Icon
@@ -309,4 +312,46 @@ fun HomeSectionPreview() {
             )
         }
     }
+}
+
+@Composable
+fun HomeScreen(modifier: Modifier = Modifier) {
+    Column(
+        modifier
+            .verticalScroll(rememberScrollState())
+    ) {
+        Spacer(Modifier.height(16.dp))
+        SearchBar(Modifier.padding(horizontal = 16.dp))
+        HomeSection(title = R.string.align_your_body) {
+            AlignYourBodyRow(
+                modifier = Modifier.padding(8.dp),
+                alignYourBodyData = listOf(
+                    AlignYourBodyData(R.drawable.ab1_inversions, R.string.ab1_inversions),
+                    AlignYourBodyData(R.drawable.ab1_inversions, R.string.ab1_inversions),
+                    AlignYourBodyData(R.drawable.ab1_inversions, R.string.ab1_inversions),
+                    AlignYourBodyData(R.drawable.ab1_inversions, R.string.ab1_inversions),
+                )
+            )
+        }
+        HomeSection(title = R.string.favorite_collections) {
+            FavoriteCollectionsGrid(
+                modifier = modifier.padding(8.dp),
+                favoriteCollectionsData = listOf(
+                    FavoriteCollectionData(R.drawable.fc2_nature_meditations, R.string.fc2_nature_meditations),
+                    FavoriteCollectionData(R.drawable.fc2_nature_meditations, R.string.fc2_nature_meditations),
+                    FavoriteCollectionData(R.drawable.fc2_nature_meditations, R.string.fc2_nature_meditations),
+                    FavoriteCollectionData(R.drawable.fc2_nature_meditations, R.string.fc2_nature_meditations),
+                    FavoriteCollectionData(R.drawable.fc2_nature_meditations, R.string.fc2_nature_meditations),
+                    FavoriteCollectionData(R.drawable.fc2_nature_meditations, R.string.fc2_nature_meditations),
+                )
+            )
+        }
+        Spacer(Modifier.height(16.dp))
+    }
+}
+
+@Preview(showBackground = true, backgroundColor = 0xFFF5F0EE, heightDp = 180)
+@Composable
+fun ScreenContentPreview() {
+    ComposeLearningTheme { HomeScreen() }
 }
