@@ -6,7 +6,9 @@ import androidx.activity.compose.setContent
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -15,6 +17,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.paddingFromBaseline
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
@@ -181,3 +184,41 @@ fun FavoriteCollectionCardPreview() {
         )
     }
 }
+
+@Composable
+fun AlignYourBodyRow(
+    modifier: Modifier = Modifier,
+    alignYourBodyData: List<AlignYourBodyData>
+) {
+    LazyRow(
+        modifier = modifier,
+        horizontalArrangement = Arrangement.spacedBy(8.dp),
+        contentPadding = PaddingValues(horizontal = 16.dp)
+    ) {
+        items(alignYourBodyData.size) { index ->
+            val item = alignYourBodyData[index]
+            AlignYourBodyElement(item.drawable, item.text)
+        }
+    }
+}
+
+@Preview(showBackground = true, backgroundColor = 0xFFF5F0EE)
+@Composable
+fun AlignYourBodyRowPreview() {
+    ComposeLearningTheme {
+        AlignYourBodyRow(
+            modifier = Modifier.padding(8.dp),
+            alignYourBodyData = listOf(
+                AlignYourBodyData(R.drawable.ab1_inversions, R.string.ab1_inversions),
+                AlignYourBodyData(R.drawable.ab1_inversions, R.string.ab1_inversions),
+                AlignYourBodyData(R.drawable.ab1_inversions, R.string.ab1_inversions),
+                AlignYourBodyData(R.drawable.ab1_inversions, R.string.ab1_inversions),
+            )
+        )
+    }
+}
+
+data class AlignYourBodyData(
+    @DrawableRes val drawable: Int,
+    @StringRes val text: Int
+)
