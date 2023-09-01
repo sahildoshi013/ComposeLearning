@@ -274,3 +274,39 @@ fun FavoriteCollectionPreview(
         )
     }
 }
+
+@Composable
+fun HomeSection(
+    @StringRes title: Int,
+    modifier: Modifier = Modifier,
+    content: @Composable () -> Unit
+) {
+    Column(modifier) {
+        Text(
+            text = stringResource(title),
+            style = MaterialTheme.typography.titleMedium,
+            modifier = Modifier
+                .paddingFromBaseline(top = 40.dp, bottom = 16.dp)
+                .padding(horizontal = 16.dp)
+        )
+        content()
+    }
+}
+
+@Preview(showBackground = true, backgroundColor = 0xFFF5F0EE)
+@Composable
+fun HomeSectionPreview() {
+    ComposeLearningTheme {
+        HomeSection(R.string.align_your_body) {
+            AlignYourBodyRow(
+                modifier = Modifier.padding(8.dp),
+                alignYourBodyData = listOf(
+                    AlignYourBodyData(R.drawable.ab1_inversions, R.string.ab1_inversions),
+                    AlignYourBodyData(R.drawable.ab1_inversions, R.string.ab1_inversions),
+                    AlignYourBodyData(R.drawable.ab1_inversions, R.string.ab1_inversions),
+                    AlignYourBodyData(R.drawable.ab1_inversions, R.string.ab1_inversions),
+                )
+            )
+        }
+    }
+}
